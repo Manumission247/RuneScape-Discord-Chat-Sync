@@ -15,10 +15,7 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-const Discord = require("discord.js");
-const Queue = require("./Queue");
-
+const { intents, partials } = require("./configs.js");
 let client;
 let config;
 let sending = false;
@@ -72,7 +69,7 @@ class DiscordSync {
     }
 
     async start() {
-        client = new Discord.Client();
+        client = new Discord.Client({ intents, partials });
         await client.login(config.login.discord);
         await client.user.setActivity(config.configs.discordPrefix + "help");
 
@@ -161,3 +158,4 @@ class DiscordSync {
 }
 
 module.exports = DiscordSync;
+co
